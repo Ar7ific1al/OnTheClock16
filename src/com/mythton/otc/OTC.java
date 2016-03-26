@@ -65,7 +65,7 @@ public class OTC extends JavaPlugin
 			e.printStackTrace();
 		}
 		
-		pm.registerEvents(new OTCJoinListener(this), this);
+		pm.registerEvents(new OTCListener(this), this);
 
 		getCommand("otc").setExecutor(new OTCCommand(this));
 	}
@@ -79,7 +79,7 @@ public class OTC extends JavaPlugin
 			if (p.hasPermission("otc.clock")){
 				try
 				{
-					OTCHelper.Clock(p, false);
+					OTCHelper.clock(p, false);
 				}
 				catch (IOException e)
 				{

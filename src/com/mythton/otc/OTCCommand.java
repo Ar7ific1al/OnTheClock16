@@ -24,17 +24,17 @@ public class OTCCommand implements CommandExecutor
 		if (sender instanceof Player)
 		{
 			Player player = (Player) sender;
-			if (label.equalsIgnoreCase("otc"))
+			if (cmd.getName().equalsIgnoreCase("otc"))
 			{
 				try
 				{
 					if (args.length < 1)
 					{
-						player.sendMessage(OTCHelper.Format("&6[OTC] &eOnTheClock is written by Ar7ific1al", ""));
+						player.sendMessage(OTCHelper.formatString("&6[OTC] &eOnTheClock is written by Ar7ific1al", ""));
 
 						if (player.hasPermission("otc.announce.custom"))
 						{
-							player.sendMessage(OTCHelper.Format("&6[OTC] &eYou have permission &cotc.announce.custom&e."
+							player.sendMessage(OTCHelper.formatString("&6[OTC] &eYou have permission &cotc.announce.custom&e."
 									+ " Use &c/otc cb Message&e to set your own custom join message."
 									+ "You can use format codes. Here's an example:",""));
 							player.sendMessage("/otc cb &e" + player.getName() + " is here to &osteal &eyour potatoes!");
@@ -51,7 +51,7 @@ public class OTCCommand implements CommandExecutor
 							tempfc.load(f);
 							if (args.length < 2)
 							{
-								player.sendMessage(OTCHelper.Format("&6[OTC] &eYour announcement is currently set to: ","")
+								player.sendMessage(OTCHelper.formatString("&6[OTC] &eYour announcement is currently set to: ","")
 										+ tempfc.getString("BroadcastMessage"));
 							}
 							else if (args.length > 1)
@@ -65,7 +65,7 @@ public class OTCCommand implements CommandExecutor
 								}
 								tempfc.set("BroadcastMessage", message);
 								tempfc.save(f);
-								player.sendMessage(OTCHelper.Format("&6[OTC] &eYour announcement was changed."
+								player.sendMessage(OTCHelper.formatString("&6[OTC] &eYour announcement was changed."
 										+ " Here is a preview:\n" + message, ""));
 							}
 						}

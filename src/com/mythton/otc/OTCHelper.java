@@ -32,7 +32,7 @@ public class OTCHelper
 		_modBroadcastFormat = _settings.getString("DefaultFormat");
 	}
 
-	public static void Clock(Player player, boolean clockingIn)
+	public static void clock(Player player, boolean clockingIn)
 			throws IOException, InvalidConfigurationException
 	{
 		File clock = new File(plugin.clockDir, player.getUniqueId().toString()
@@ -99,7 +99,7 @@ public class OTCHelper
 		tempfc.save(clock);
 	}
 
-	public static String BroadcastJoin(Player player, boolean useCustom)
+	public static String broadcastJoin(Player player, boolean useCustom)
 			throws IOException, InvalidConfigurationException
 	{
 		String name = player.getName();
@@ -118,10 +118,10 @@ public class OTCHelper
 			message = _broadcastPrefix + tempfc.getString("BroadcastMessage");
 		}
 
-		return Format(message, name);
+		return formatString(message, name);
 	}
 
-	static String Format(String message, String pName)
+	static String formatString(String message, String pName)
 	{
 		message = message.replaceAll("&([0-9a-f])", "\u00A7$1");
 		message = message.replaceAll("&([k-o])", "\u00A7$1");
