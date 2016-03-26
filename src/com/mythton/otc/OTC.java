@@ -15,6 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class OTC extends JavaPlugin
 {
+	//	Push from Eclipse test
 	public static final Logger console = Logger.getLogger("OTC");
 	public OTCHelper helper;
 
