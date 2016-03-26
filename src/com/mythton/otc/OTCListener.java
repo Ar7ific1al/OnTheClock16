@@ -26,25 +26,24 @@ public class OTCListener implements Listener
 			InvalidConfigurationException
 	{
 		Player player = e.getPlayer();
-		
-		File f = new File(plugin.clockDir, player.getUniqueId() + ".clock");
-		if (!f.exists()){
-			OTCHelper.makeNewClockFile(player);
-		}
-
 		if (player.hasPermission("otc.clock"))
 		{
+			File f = new File(plugin.clockDir, player.getUniqueId() + ".clock");
+			if (!f.exists()){
+				OTCHelper.makeNewClockFile(player);
+			}
+			
 			OTCHelper.clock(player, true);
-		}
-
-		if (player.hasPermission("otc.announce.mod")
-				&& !player.hasPermission("otc.announce.custom"))
-		{
-			e.setJoinMessage(OTCHelper.broadcastJoin(player, true));
-		}
-		else if (player.hasPermission("otc.announce.custom"))
-		{
-			e.setJoinMessage(OTCHelper.broadcastJoin(player, true));
+	
+			if (player.hasPermission("otc.announce.mod")
+					&& !player.hasPermission("otc.announce.custom"))
+			{
+				e.setJoinMessage(OTCHelper.broadcastJoin(player, true));
+			}
+			else if (player.hasPermission("otc.announce.custom"))
+			{
+				e.setJoinMessage(OTCHelper.broadcastJoin(player, true));
+			}
 		}
 	}
 
