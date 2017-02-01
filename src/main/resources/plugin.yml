@@ -5,6 +5,7 @@ name: OnTheClock
 prefix: OTC
 url: http://jagswag2014.github.io/
 version: ${project.version}
+softdepend: [Function_One]
 commands:
     otc:
       description: Base command for On The Clock.
