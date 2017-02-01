@@ -11,7 +11,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with OnTheClock. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.mythton.otc;
+package com.mythton.otc.Commands;
 
 import java.io.File;
 
@@ -21,6 +21,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+
+import com.mythton.otc.OTC;
+import com.mythton.otc.Utils.OTCHelper;
 
 public class OTCCommand implements CommandExecutor
 {

@@ -11,7 +11,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with OnTheClock. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.mythton.otc;
+package com.mythton.otc.Utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,6 +27,8 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+
+import com.mythton.otc.OTC;
 
 public class OTCHelper
 {
@@ -134,7 +136,7 @@ public class OTCHelper
 		return formatString(message, name);
 	}
 
-	static String formatString(String message, String pName)
+	public static String formatString(String message, String pName)
 	{
 		message = message.replaceAll("&([0-9a-f])", "\u00A7$1");
 		message = message.replaceAll("&([k-o])", "\u00A7$1");

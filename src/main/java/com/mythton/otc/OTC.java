@@ -26,6 +26,11 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.mythton.otc.Commands.OTCCommand;
+import com.mythton.otc.Events.OTCListener;
+import com.mythton.otc.Metrics.MetricsLite;
+import com.mythton.otc.Utils.OTCHelper;
+
 public class OTC extends JavaPlugin
 {
 	//	Push from Eclipse test
@@ -33,7 +38,7 @@ public class OTC extends JavaPlugin
 	public OTCHelper helper;
 
 	File pluginDir = new File("plugins/OnTheClock16/");
-	File clockDir = new File("plugins/OnTheClock16/Players/");
+	public File clockDir = new File("plugins/OnTheClock16/Players/");
 
 	@Override
 	public void onEnable()
@@ -81,6 +86,7 @@ public class OTC extends JavaPlugin
 		pm.registerEvents(new OTCListener(this), this);
 
 		getCommand("otc").setExecutor(new OTCCommand(this));
+		enableMetrics();
 	}
 	
 	@Override
@@ -105,5 +111,14 @@ public class OTC extends JavaPlugin
 			}
 		}
 		console.log(Level.INFO, "[OTC] OTC disabled.");
+	}
+	
+	private void enableMetrics() {
+		try {
+			MetricsLite metrics = new MetricsLite(this);
+			metrics.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

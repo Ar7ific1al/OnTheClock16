@@ -11,7 +11,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with OnTheClock. If not, see <http://www.gnu.org/licenses/>.
  */
-package com.mythton.otc;
+package com.mythton.otc.Events;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +23,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+
+import com.mythton.otc.OTC;
+import com.mythton.otc.Utils.OTCHelper;
 
 public class OTCListener implements Listener
 {
