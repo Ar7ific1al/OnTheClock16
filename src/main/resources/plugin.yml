@@ -1,9 +1,10 @@
-author: Ar7ific1al
+authors: [Ar7ific1al, JagSwag2014]
 description: Your staff will now clock in and out.
 main: com.mythton.otc.OTC
-name: OnTheClock16
-url: 
-version: 1.0
+name: OnTheClock
+prefix: OTC
+url: http://jagswag2014.github.io/
+version: ${project.version}
 commands:
     otc:
       description: Base command for On The Clock.
