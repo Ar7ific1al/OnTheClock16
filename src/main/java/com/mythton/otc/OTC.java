@@ -22,13 +22,18 @@ import java.util.logging.Logger;
 import org.bstats.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.inventivetalent.update.spiget.SpigetUpdate;
+import org.inventivetalent.update.spiget.UpdateCallback;
+import org.inventivetalent.update.spiget.comparator.VersionComparator;
 
 import com.mythton.otc.Commands.OTCCommand;
 import com.mythton.otc.Events.OTCListener;
+import com.mythton.otc.Utils.Log;
 import com.mythton.otc.Utils.OTCHelper;
 
 public class OTC extends JavaPlugin
@@ -36,6 +41,7 @@ public class OTC extends JavaPlugin
 	//	Push from Eclipse test
 	public static final Logger console = Logger.getLogger("OTC");
 	public OTCHelper helper;
+	public FileConfiguration _settings;
 
 	File pluginDir = new File("plugins/OnTheClock16/");
 	public File clockDir = new File("plugins/OnTheClock16/Players/");
@@ -86,6 +92,19 @@ public class OTC extends JavaPlugin
 		pm.registerEvents(new OTCListener(this), this);
 
 		getCommand("otc").setExecutor(new OTCCommand(this));
+		
+		try {
+			_settings.load(settings);
+			if(_settings.getBoolean("update.check")) {
+				checkUpdates();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InvalidConfigurationException e) {
+			e.printStackTrace();
+		}
 		new Metrics(this);
 	}
 	
@@ -111,5 +130,56 @@ public class OTC extends JavaPlugin
 			}
 		}
 		console.log(Level.INFO, "[OTC] OTC disabled.");
+	}
+	
+	private void checkUpdates() {
+		SpigetUpdate updater = new SpigetUpdate(this, 35992);
+		updater.setVersionComparator(VersionComparator.EQUAL);
+		
+		updater.setVersionComparator(VersionComparator.SEM_VER);
+		
+		updater.checkForUpdate(new UpdateCallback() {
+			public void updateAvailable(String newVersion, String url, boolean direct) {
+				File settings = new File(getDataFolder(), "settings.yml");
+				Log.LogMessage("OnTheClock has an update available!", getServer().getConsoleSender());
+				try {
+					_settings.load(settings);
+					if(_settings.getBoolean("update.download")) {
+						downloadUpdate();
+					} else {
+						Log.LogMessage("Download: " + url, getServer().getConsoleSender());
+					}
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (InvalidConfigurationException e) {
+					e.printStackTrace();
+				}	
+			}
+			
+			public void upToDate() {
+				Log.LogMessage("Latest version of Function_One is running.", getServer().getConsoleSender());
+			}
+		});
+	}
+	
+	private void downloadUpdate() {
+		final SpigetUpdate updater = new SpigetUpdate(this, 35992);
+		updater.checkForUpdate(new UpdateCallback() {
+			public void updateAvailable(String newVersion, String url, boolean direct) {
+				if(direct) {
+					if(updater.downloadUpdate()) {
+						
+					} else {
+						Log.LogMessage("OnTheClock updater failed; " + updater.getFailReason()
+						, getServer().getConsoleSender());
+					}
+				}
+			}
+			
+			public void upToDate() {	
+			}
+		});
 	}
 }

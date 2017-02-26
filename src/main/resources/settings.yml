@@ -4,3 +4,8 @@ Prefix: "&6[OTC]&f "
 
 #	The default login message format for players without custom login message permissions	#
 DefaultFormat: "&c%p &eis here! Need help? Ask them!"
+
+# Update checking and automatic downloading
+update:
+    check: true
+    download: true
