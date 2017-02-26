@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.bstats.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
@@ -28,7 +29,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.mythton.otc.Commands.OTCCommand;
 import com.mythton.otc.Events.OTCListener;
-import com.mythton.otc.Metrics.MetricsLite;
 import com.mythton.otc.Utils.OTCHelper;
 
 public class OTC extends JavaPlugin
@@ -86,7 +86,7 @@ public class OTC extends JavaPlugin
 		pm.registerEvents(new OTCListener(this), this);
 
 		getCommand("otc").setExecutor(new OTCCommand(this));
-		enableMetrics();
+		new Metrics(this);
 	}
 	
 	@Override
@@ -111,14 +111,5 @@ public class OTC extends JavaPlugin
 			}
 		}
 		console.log(Level.INFO, "[OTC] OTC disabled.");
-	}
-	
-	private void enableMetrics() {
-		try {
-			MetricsLite metrics = new MetricsLite(this);
-			metrics.start();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }
