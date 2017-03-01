@@ -3,7 +3,6 @@ description: Your staff will now clock in and out.
 main: com.mythton.otc.OTC
 name: OnTheClock
 prefix: OTC
-url: http://jagswag2014.github.io/
 version: ${project.version}
 softdepend: [Function_One]
 commands:
