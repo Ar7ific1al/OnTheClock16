@@ -6,6 +6,4 @@ Prefix: "&6[OTC]&f "
 DefaultFormat: "&c%p &eis here! Need help? Ask them!"
 
 # Update checking and automatic downloading
-update:
-    check: true
-    download: true
+updateCheck: true

@@ -17,7 +17,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,16 +28,30 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.mythton.otc.OTC;
+import com.mythton.otc.Utils.Log;
 import com.mythton.otc.Utils.OTCHelper;
+import com.mythton.otc.Utils.Updater;
 
 public class OTCListener implements Listener
 {
 	private OTC plugin;
+	File file;
+	FileConfiguration settings = new YamlConfiguration();
 
 	public OTCListener(OTC instance)
 	{
 		plugin = instance;
 		OTC.console.log(Level.INFO, "[OTC] Player join listener registered.");
+		
+		try {
+			file = new File(plugin.getDataFolder(), "settings.yml");
+			settings.load(file);
+			if(settings.getBoolean("updateCheck")) {
+				checkUpdates(plugin.getDescription().getVersion());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@EventHandler
@@ -73,5 +90,36 @@ public class OTCListener implements Listener
 			OTCHelper.clock(player, false);
 		}
 	}
-
+	
+	private void checkUpdates(String ver) {
+		Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Updater updater = new Updater();
+					updater.checkUpdate("v" + ver);
+					
+					String latest = updater.getLatestVersion();
+					
+					if(latest == null)
+						return;
+					
+					latest = "v" + latest;
+					
+					Bukkit.getScheduler().runTask(plugin, new Runnable() {
+						@Override
+						public void run() {
+							for(Player p : Bukkit.getOnlinePlayers()) {
+								if(p.isOp()) {
+									p.sendMessage(Log.ColorMessage(""));
+								}
+							}
+						}
+					});
+				} catch (Exception e) {
+					Log.LogMessage("OnTheClock failed to check for updates.", plugin.getServer().getConsoleSender());
+				}
+			}
+		}, 0, (20 * 60 * 60 * 6));
+	}
 }
