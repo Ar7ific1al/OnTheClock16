@@ -48,6 +48,8 @@ public class OTCListener implements Listener
 			settings.load(file);
 			if(settings.getBoolean("updateCheck")) {
 				checkUpdates(plugin.getDescription().getVersion());
+			} else {
+				Log.LogMessage("Update checking disabled. Skipping...", plugin.getServer().getConsoleSender());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -111,7 +113,7 @@ public class OTCListener implements Listener
 						public void run() {
 							for(Player p : Bukkit.getOnlinePlayers()) {
 								if(p.isOp()) {
-									p.sendMessage(Log.ColorMessage(""));
+									p.sendMessage(Log.ColorMessage("&eOnTheClock v&6" + updater.getLatestVersion() + " &eis available!"));
 								}
 							}
 						}

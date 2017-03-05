@@ -46,8 +46,8 @@ public class OTCCommand implements CommandExecutor
 				{
 					if (args.length < 1)
 					{
-						player.sendMessage(OTCHelper.formatString("&6[OTC] &eOnTheClock is now maintained by JagSwag2014", ""));
-						player.sendMessage(OTCHelper.formatString("&6[OTC] &eOnTheClock is originally written by Ar7ific1al", ""));		
+						player.sendMessage(OTCHelper.formatString("&6[OTC] &eOnTheClock was originally "
+										+ "written by Ar7ific1al and is now maintained by JagSwag2014", ""));	
 
 						if (player.hasPermission("otc.announce.custom"))
 						{
