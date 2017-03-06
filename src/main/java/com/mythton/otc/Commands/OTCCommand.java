@@ -14,7 +14,11 @@
 package com.mythton.otc.Commands;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,7 +27,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import com.mythton.otc.OTC;
+import com.mythton.otc.Utils.Log;
 import com.mythton.otc.Utils.OTCHelper;
+import com.mythton.otc.Utils.UUIDFetcher;
 
 public class OTCCommand implements CommandExecutor
 {
@@ -59,7 +65,7 @@ public class OTCCommand implements CommandExecutor
 					}
 					else
 					{
-						if (args[0].equalsIgnoreCase("cb")
+						if (args[0].equalsIgnoreCase("custom")
 								&& player.hasPermission("otc.announce.custom"))
 						{
 							File f = new File(plugin.clockDir,
@@ -85,6 +91,51 @@ public class OTCCommand implements CommandExecutor
 								player.sendMessage(OTCHelper.formatString("&6[OTC] &eYour announcement was changed."
 										+ " Here is a preview:\n" + message, ""));
 							}
+						} else if(args[0].equalsIgnoreCase("view")){
+							if(args.length == 1) {
+								if(player.hasPermission("otc.view")) {
+									
+								} else {
+									noPerms(player);
+								}
+							} else {
+								if(player.hasPermission("otc.view.other")) {
+									if(Bukkit.getPlayer(args[1]) != null) {
+										UUID uuid = Bukkit.getPlayer(args[1]).getUniqueId();
+										
+										File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+										if(file.exists()) {
+											FileConfiguration timesheet = new YamlConfiguration();
+											timesheet.load(file);
+											
+										} else {
+											player.sendMessage(Log.ColorMessage("&4Error: No timesheet found."));
+										}
+									} else {
+										UUID uuid = null;
+										UUIDFetcher uuidF = new UUIDFetcher(Arrays.asList(args[1]));
+										try {
+											Map<String, UUID> map = uuidF.call();
+											uuid = map.get(args[1]);
+										} catch (Exception e) {
+											noPlayer(player);
+											return true;
+										}
+										
+										File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+										if(file.exists()) {
+											FileConfiguration timesheet = new YamlConfiguration();
+											timesheet.load(file);
+											
+										} else {
+											player.sendMessage(Log.ColorMessage("&4Error: No timesheet found."));
+										}
+									}
+								} else {
+									noPerms(player);
+									return true;
+								}
+							}
 						}
 					}
 				}
@@ -96,5 +147,13 @@ public class OTCCommand implements CommandExecutor
 			}
 		}
 		return false;
+	}
+	
+	private void noPerms(Player player) {
+		player.sendMessage(Log.ColorMessage("&4Error: You do not have permission to use that."));
+	}
+	
+	private void noPlayer(Player player) {
+		player.sendMessage(Log.ColorMessage("&4Error: No player could be found by that name."));
 	}
 }
