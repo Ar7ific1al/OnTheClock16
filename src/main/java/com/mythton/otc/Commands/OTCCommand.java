@@ -63,9 +63,9 @@ public class OTCCommand implements CommandExecutor
 						if (player.hasPermission("otc.announce.custom"))
 						{
 							player.sendMessage(OTCHelper.formatString("&6[OTC] &eYou have permission &cotc.announce.custom&e."
-									+ " Use &c/otc cb Message&e to set your own custom join message."
+									+ " Use &c/otc custom Message&e to set your own custom join message."
 									+ " You can use format codes. Here's an example:",""));
-							player.sendMessage("/otc cb &e" + player.getName() + " is here to &osteal &eyour potatoes!");
+							player.sendMessage("/otc custom &e" + player.getName() + " is here to &osteal &eyour potatoes!");
 						}
 					}
 					else
