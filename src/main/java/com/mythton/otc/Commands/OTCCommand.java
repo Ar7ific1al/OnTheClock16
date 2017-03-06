@@ -15,16 +15,21 @@ package com.mythton.otc.Commands;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import com.mythton.otc.OTC;
 import com.mythton.otc.Utils.Log;
@@ -34,7 +39,7 @@ import com.mythton.otc.Utils.UUIDFetcher;
 public class OTCCommand implements CommandExecutor
 {
 	OTC plugin;
-
+	public static HashMap<UUID, UUID> uuidMap = new HashMap<UUID, UUID>();
 	public OTCCommand(OTC instance)
 	{
 		plugin = instance;
@@ -94,7 +99,27 @@ public class OTCCommand implements CommandExecutor
 						} else if(args[0].equalsIgnoreCase("view")){
 							if(args.length == 1) {
 								if(player.hasPermission("otc.view")) {
+									UUID uuid = player.getUniqueId();
 									
+									File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+									if(file.exists()) {
+										FileConfiguration timesheet = new YamlConfiguration();
+										timesheet.load(file);
+										int num17 = timesheet.getConfigurationSection("2017").getKeys(false).size();
+										
+										Inventory inv = null;
+										ItemStack year17 = new ItemStack(Material.WATCH, num17);
+										ItemMeta meta = year17.getItemMeta();
+										meta.setDisplayName(Log.ColorMessage("&a2017"));
+										year17.setItemMeta(meta);
+										
+										inv = Bukkit.getServer().createInventory(player, 9, "TimeSheet: " + player.getName());
+										inv.setItem(4, year17);
+										player.openInventory(inv);
+										uuidMap.put(uuid, uuid);
+									} else {
+										player.sendMessage(Log.ColorMessage("&4Error: No timesheet found."));
+									}
 								} else {
 									noPerms(player);
 								}
@@ -107,7 +132,18 @@ public class OTCCommand implements CommandExecutor
 										if(file.exists()) {
 											FileConfiguration timesheet = new YamlConfiguration();
 											timesheet.load(file);
+											int num17 = timesheet.getConfigurationSection("2017").getKeys(false).size();
 											
+											Inventory inv = null;
+											ItemStack year17 = new ItemStack(Material.WATCH, num17);
+											ItemMeta meta = year17.getItemMeta();
+											meta.setDisplayName(Log.ColorMessage("&a2017"));
+											year17.setItemMeta(meta);
+											
+											inv = Bukkit.getServer().createInventory(player, 9, "TimeSheet: " + args[1]);
+											inv.setItem(4, year17);
+											player.openInventory(inv);
+											uuidMap.put(player.getUniqueId(), uuid);
 										} else {
 											player.sendMessage(Log.ColorMessage("&4Error: No timesheet found."));
 										}
@@ -126,7 +162,19 @@ public class OTCCommand implements CommandExecutor
 										if(file.exists()) {
 											FileConfiguration timesheet = new YamlConfiguration();
 											timesheet.load(file);
+											int num17 = timesheet.getConfigurationSection("2017").getKeys(false).size();
 											
+											Inventory inv = null;
+											ItemStack year17 = new ItemStack(Material.WATCH, num17);
+											ItemMeta meta = year17.getItemMeta();
+											meta.setDisplayName(Log.ColorMessage("&a2017"));
+											year17.setItemMeta(meta);
+											
+											inv = Bukkit.getServer().createInventory(player, 9, "TimeSheet: " + args[1]);
+											inv.setItem(4, year17);
+											player.openInventory(inv);
+											
+											uuidMap.put(player.getUniqueId(), uuid);
 										} else {
 											player.sendMessage(Log.ColorMessage("&4Error: No timesheet found."));
 										}
