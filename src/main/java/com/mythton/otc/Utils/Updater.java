@@ -56,7 +56,7 @@ public class Updater {
             con.setDoOutput(true);
             con.setRequestMethod("POST");
             con.getOutputStream().write(
-                    ("key=98BE0FE67F88AB82B4C197FAF1DC3B69206EFDCC4D3B80FC83A00037510B99B4&resource=35992").getBytes("UTF-8"));
+                    ("key=98BE0FE67F88AB82B4C197FAF1DC3B69206EFDCC4D3B80FC83A00037510B99B4&resource=374").getBytes("UTF-8"));
             String version = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();
             if (version.length() <= 7) {
                 return version;

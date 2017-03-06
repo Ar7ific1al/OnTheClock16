@@ -53,7 +53,7 @@ public class OTCCommand implements CommandExecutor
 						{
 							player.sendMessage(OTCHelper.formatString("&6[OTC] &eYou have permission &cotc.announce.custom&e."
 									+ " Use &c/otc cb Message&e to set your own custom join message."
-									+ "You can use format codes. Here's an example:",""));
+									+ " You can use format codes. Here's an example:",""));
 							player.sendMessage("/otc cb &e" + player.getName() + " is here to &osteal &eyour potatoes!");
 						}
 					}

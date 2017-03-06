@@ -127,7 +127,7 @@ public class OTCHelper
 		}
 		else
 		{
-			File f = new File("plugins/OnTheClock16/Players/", uuid + ".clock");
+			File f = new File("plugins/OnTheClock/Players/", uuid + ".clock");
 			FileConfiguration tempfc = new YamlConfiguration();
 			tempfc.load(f);
 			message = _broadcastPrefix + tempfc.getString("BroadcastMessage");
@@ -147,7 +147,7 @@ public class OTCHelper
 	public static void makeNewClockFile(Player player) throws IOException,
 			InvalidConfigurationException
 	{
-		File f = new File(plugin.clockDir, player.getUniqueId() + ".clock");
+		File f = new File(plugin.clockDir, player.getUniqueId().toString() + ".clock");
 		f.createNewFile();
 
 		FileConfiguration tempfc = new YamlConfiguration();

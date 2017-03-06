@@ -63,7 +63,7 @@ public class OTCListener implements Listener
 		Player player = e.getPlayer();
 		if (player.hasPermission("otc.clock"))
 		{
-			File f = new File(plugin.clockDir, player.getUniqueId() + ".clock");
+			File f = new File(plugin.clockDir, player.getUniqueId().toString() + ".clock");
 			if (!f.exists()){
 				OTCHelper.makeNewClockFile(player);
 			}
@@ -114,6 +114,7 @@ public class OTCListener implements Listener
 							for(Player p : Bukkit.getOnlinePlayers()) {
 								if(p.isOp()) {
 									p.sendMessage(Log.ColorMessage("&eOnTheClock v&6" + updater.getLatestVersion() + " &eis available!"));
+									p.sendMessage(Log.ColorMessage("&eDownload: &6null"));
 								}
 							}
 						}
