@@ -29,6 +29,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import com.mythton.otc.OTC;
+import com.mythton.otc.Commands.OTCCommand;
 
 public class OTCHelper
 {
@@ -159,4 +160,159 @@ public class OTCHelper
 		tempfc.save(f);
 	}
 
+	public int jan(UUID pUUID, int year) throws FileNotFoundException, IOException, InvalidConfigurationException {
+		int num = 0;
+		UUID uuid = OTCCommand.uuidMap.get(pUUID);
+		
+		File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+		FileConfiguration timesheet = new YamlConfiguration();
+		
+		timesheet.load(file);
+		num = timesheet.getConfigurationSection(year + ".January").getKeys(false).size();
+		
+		return num;
+	}
+	
+	public int feb(UUID pUUID, int year) throws FileNotFoundException, IOException, InvalidConfigurationException {
+		int num = 0;
+		UUID uuid = OTCCommand.uuidMap.get(pUUID);
+		
+		File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+		FileConfiguration timesheet = new YamlConfiguration();
+		
+		timesheet.load(file);
+		num = timesheet.getConfigurationSection(year + ".February").getKeys(false).size();
+		
+		return num;
+	}
+	
+	public int mar(UUID pUUID, int year) throws FileNotFoundException, IOException, InvalidConfigurationException {
+		int num = 0;
+		UUID uuid = OTCCommand.uuidMap.get(pUUID);
+		
+		File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+		FileConfiguration timesheet = new YamlConfiguration();
+		
+		timesheet.load(file);
+		num = timesheet.getConfigurationSection(year + ".March").getKeys(false).size();
+		
+		return num;
+	}
+	
+	public int apr(UUID pUUID, int year) throws FileNotFoundException, IOException, InvalidConfigurationException {
+		int num = 0;
+		UUID uuid = OTCCommand.uuidMap.get(pUUID);
+		
+		File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+		FileConfiguration timesheet = new YamlConfiguration();
+		
+		timesheet.load(file);
+		num = timesheet.getConfigurationSection(year + ".April").getKeys(false).size();
+		
+		return num;
+	}
+	
+	public int may(UUID pUUID, int year) throws FileNotFoundException, IOException, InvalidConfigurationException {
+		int num = 0;
+		UUID uuid = OTCCommand.uuidMap.get(pUUID);
+		
+		File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+		FileConfiguration timesheet = new YamlConfiguration();
+		
+		timesheet.load(file);
+		num = timesheet.getConfigurationSection(year + ".May").getKeys(false).size();
+		
+		return num;
+	}
+	
+	public int jun(UUID pUUID, int year) throws FileNotFoundException, IOException, InvalidConfigurationException {
+		int num = 0;
+		UUID uuid = OTCCommand.uuidMap.get(pUUID);
+		
+		File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+		FileConfiguration timesheet = new YamlConfiguration();
+		
+		timesheet.load(file);
+		num = timesheet.getConfigurationSection(year + ".June").getKeys(false).size();
+		
+		return num;
+	}
+	
+	public int jul(UUID pUUID, int year) throws FileNotFoundException, IOException, InvalidConfigurationException {
+		int num = 0;
+		UUID uuid = OTCCommand.uuidMap.get(pUUID);
+		
+		File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+		FileConfiguration timesheet = new YamlConfiguration();
+		
+		timesheet.load(file);
+		num = timesheet.getConfigurationSection(year + ".July").getKeys(false).size();
+		
+		return num;
+	}
+	
+	public int aug(UUID pUUID, int year) throws FileNotFoundException, IOException, InvalidConfigurationException {
+		int num = 0;
+		UUID uuid = OTCCommand.uuidMap.get(pUUID);
+		
+		File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+		FileConfiguration timesheet = new YamlConfiguration();
+		
+		timesheet.load(file);
+		num = timesheet.getConfigurationSection(year + ".August").getKeys(false).size();
+		
+		return num;
+	}
+	
+	public int sep(UUID pUUID, int year) throws FileNotFoundException, IOException, InvalidConfigurationException {
+		int num = 0;
+		UUID uuid = OTCCommand.uuidMap.get(pUUID);
+		
+		File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+		FileConfiguration timesheet = new YamlConfiguration();
+		
+		timesheet.load(file);
+		num = timesheet.getConfigurationSection(year + ".September").getKeys(false).size();
+		
+		return num;
+	}
+	
+	public int oct(UUID pUUID, int year) throws FileNotFoundException, IOException, InvalidConfigurationException {
+		int num = 0;
+		UUID uuid = OTCCommand.uuidMap.get(pUUID);
+		
+		File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+		FileConfiguration timesheet = new YamlConfiguration();
+		
+		timesheet.load(file);
+		num = timesheet.getConfigurationSection(year + ".October").getKeys(false).size();
+		
+		return num;
+	}
+	
+	public int nov(UUID pUUID, int year) throws FileNotFoundException, IOException, InvalidConfigurationException {
+		int num = 0;
+		UUID uuid = OTCCommand.uuidMap.get(pUUID);
+		
+		File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+		FileConfiguration timesheet = new YamlConfiguration();
+		
+		timesheet.load(file);
+		num = timesheet.getConfigurationSection(year + ".November").getKeys(false).size();
+		
+		return num;
+	}
+	
+	public int dec(UUID pUUID, int year) throws FileNotFoundException, IOException, InvalidConfigurationException {
+		int num = 0;
+		UUID uuid = OTCCommand.uuidMap.get(pUUID);
+		
+		File file = new File(plugin.clockDir, uuid.toString() + ".clock");
+		FileConfiguration timesheet = new YamlConfiguration();
+		
+		timesheet.load(file);
+		num = timesheet.getConfigurationSection(year + ".December").getKeys(false).size();
+		
+		return num;
+	}
 }
