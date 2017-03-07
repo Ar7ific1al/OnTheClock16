@@ -168,7 +168,8 @@ public class OTCHelper
 		FileConfiguration timesheet = new YamlConfiguration();
 		
 		timesheet.load(file);
-		num = timesheet.getConfigurationSection(year + ".January").getKeys(false).size();
+		if(timesheet.getConfigurationSection(year + ".January") != null)
+			num = timesheet.getConfigurationSection(year + ".January").getKeys(false).size();
 		
 		return num;
 	}
@@ -181,7 +182,8 @@ public class OTCHelper
 		FileConfiguration timesheet = new YamlConfiguration();
 		
 		timesheet.load(file);
-		num = timesheet.getConfigurationSection(year + ".February").getKeys(false).size();
+		if(timesheet.getConfigurationSection(year + ".February") != null)
+			num = timesheet.getConfigurationSection(year + ".February").getKeys(false).size();
 		
 		return num;
 	}
@@ -194,7 +196,8 @@ public class OTCHelper
 		FileConfiguration timesheet = new YamlConfiguration();
 		
 		timesheet.load(file);
-		num = timesheet.getConfigurationSection(year + ".March").getKeys(false).size();
+		if(timesheet.getConfigurationSection(year + ".March") != null)
+			num = timesheet.getConfigurationSection(year + ".March").getKeys(false).size();
 		
 		return num;
 	}
@@ -207,7 +210,8 @@ public class OTCHelper
 		FileConfiguration timesheet = new YamlConfiguration();
 		
 		timesheet.load(file);
-		num = timesheet.getConfigurationSection(year + ".April").getKeys(false).size();
+		if(timesheet.getConfigurationSection(year + ".April") != null)
+			num = timesheet.getConfigurationSection(year + ".April").getKeys(false).size();
 		
 		return num;
 	}
@@ -220,7 +224,8 @@ public class OTCHelper
 		FileConfiguration timesheet = new YamlConfiguration();
 		
 		timesheet.load(file);
-		num = timesheet.getConfigurationSection(year + ".May").getKeys(false).size();
+		if(timesheet.getConfigurationSection(year + ".May") != null)
+			num = timesheet.getConfigurationSection(year + ".May").getKeys(false).size();
 		
 		return num;
 	}
@@ -233,7 +238,8 @@ public class OTCHelper
 		FileConfiguration timesheet = new YamlConfiguration();
 		
 		timesheet.load(file);
-		num = timesheet.getConfigurationSection(year + ".June").getKeys(false).size();
+		if(timesheet.getConfigurationSection(year + ".June") != null)
+			num = timesheet.getConfigurationSection(year + ".June").getKeys(false).size();
 		
 		return num;
 	}
@@ -246,7 +252,8 @@ public class OTCHelper
 		FileConfiguration timesheet = new YamlConfiguration();
 		
 		timesheet.load(file);
-		num = timesheet.getConfigurationSection(year + ".July").getKeys(false).size();
+		if(timesheet.getConfigurationSection(year + ".July") != null)
+			num = timesheet.getConfigurationSection(year + ".July").getKeys(false).size();
 		
 		return num;
 	}
@@ -259,7 +266,8 @@ public class OTCHelper
 		FileConfiguration timesheet = new YamlConfiguration();
 		
 		timesheet.load(file);
-		num = timesheet.getConfigurationSection(year + ".August").getKeys(false).size();
+		if(timesheet.getConfigurationSection(year + ".August") != null)
+			num = timesheet.getConfigurationSection(year + ".August").getKeys(false).size();
 		
 		return num;
 	}
@@ -272,7 +280,8 @@ public class OTCHelper
 		FileConfiguration timesheet = new YamlConfiguration();
 		
 		timesheet.load(file);
-		num = timesheet.getConfigurationSection(year + ".September").getKeys(false).size();
+		if(timesheet.getConfigurationSection(year + ".September") != null)
+			num = timesheet.getConfigurationSection(year + ".September").getKeys(false).size();
 		
 		return num;
 	}
@@ -285,7 +294,8 @@ public class OTCHelper
 		FileConfiguration timesheet = new YamlConfiguration();
 		
 		timesheet.load(file);
-		num = timesheet.getConfigurationSection(year + ".October").getKeys(false).size();
+		if(timesheet.getConfigurationSection(year + ".October") != null)
+			num = timesheet.getConfigurationSection(year + ".October").getKeys(false).size();
 		
 		return num;
 	}
@@ -298,7 +308,8 @@ public class OTCHelper
 		FileConfiguration timesheet = new YamlConfiguration();
 		
 		timesheet.load(file);
-		num = timesheet.getConfigurationSection(year + ".November").getKeys(false).size();
+		if(timesheet.getConfigurationSection(year + ".November") != null)
+			num = timesheet.getConfigurationSection(year + ".November").getKeys(false).size();
 		
 		return num;
 	}
@@ -311,7 +322,8 @@ public class OTCHelper
 		FileConfiguration timesheet = new YamlConfiguration();
 		
 		timesheet.load(file);
-		num = timesheet.getConfigurationSection(year + ".December").getKeys(false).size();
+		if(timesheet.getConfigurationSection(year + ".December") != null)
+			num = timesheet.getConfigurationSection(year + ".December").getKeys(false).size();
 		
 		return num;
 	}

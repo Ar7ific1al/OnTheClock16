@@ -105,7 +105,9 @@ public class OTCCommand implements CommandExecutor
 									if(file.exists()) {
 										FileConfiguration timesheet = new YamlConfiguration();
 										timesheet.load(file);
-										int num17 = timesheet.getConfigurationSection("2017").getKeys(false).size();
+										int num17 = 0;
+										if(timesheet.getConfigurationSection("2017") != null)
+											num17 = timesheet.getConfigurationSection("2017").getKeys(false).size();
 										
 										Inventory inv = null;
 										ItemStack year17 = new ItemStack(Material.WATCH, num17);
@@ -132,7 +134,9 @@ public class OTCCommand implements CommandExecutor
 										if(file.exists()) {
 											FileConfiguration timesheet = new YamlConfiguration();
 											timesheet.load(file);
-											int num17 = timesheet.getConfigurationSection("2017").getKeys(false).size();
+											int num17 = 0;
+											if(timesheet.getConfigurationSection("2017") != null)
+												num17 = timesheet.getConfigurationSection("2017").getKeys(false).size();
 											
 											Inventory inv = null;
 											ItemStack year17 = new ItemStack(Material.WATCH, num17);
@@ -162,7 +166,9 @@ public class OTCCommand implements CommandExecutor
 										if(file.exists()) {
 											FileConfiguration timesheet = new YamlConfiguration();
 											timesheet.load(file);
-											int num17 = timesheet.getConfigurationSection("2017").getKeys(false).size();
+											int num17 = 0;
+											if(timesheet.getConfigurationSection("2017") != null)
+												num17 = timesheet.getConfigurationSection("2017").getKeys(false).size();
 											
 											Inventory inv = null;
 											ItemStack year17 = new ItemStack(Material.WATCH, num17);
