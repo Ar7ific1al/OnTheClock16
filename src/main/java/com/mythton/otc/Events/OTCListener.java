@@ -73,7 +73,7 @@ public class OTCListener implements Listener
 			if (player.hasPermission("otc.announce.mod")
 					&& !player.hasPermission("otc.announce.custom"))
 			{
-				e.setJoinMessage(OTCHelper.broadcastJoin(player, true));
+				e.setJoinMessage(OTCHelper.broadcastJoin(player, false));
 			}
 			else if (player.hasPermission("otc.announce.custom"))
 			{

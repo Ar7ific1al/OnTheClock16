@@ -88,7 +88,19 @@ public class OTC extends JavaPlugin
 
 		getCommand("otc").setExecutor(new OTCCommand(this));
 
-		new Metrics(this);
+		Metrics metrics = new Metrics(this);
+		metrics.addCustomChart(new Metrics.SingleLineChart("staff_clocked_in") {
+			
+			@Override
+			public int getValue() {
+				int num = 0;
+				for(Player p : Bukkit.getOnlinePlayers()) {
+					if(p.hasPermission("otc.clock"))
+						num++;
+				}
+				return num;
+			}
+		});
 	}
 	
 	@Override
