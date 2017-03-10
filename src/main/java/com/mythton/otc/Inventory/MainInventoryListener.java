@@ -16,6 +16,7 @@ package com.mythton.otc.Inventory;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -104,84 +105,84 @@ public class MainInventoryListener implements Listener {
 						if (itemStack.getAmount() == 0)
 							return;
 						
-						days(1, player);
+						days(2017, 1, player);
 						
 					} else if(itemStack.getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "February")) {
 						e.setResult(Result.DENY);
 						if (itemStack.getAmount() == 0)
 							return;
 						
-						days(2, player);
+						days(2017, 2, player);
 						
 					} else if(itemStack.getItemMeta().getDisplayName().equals(ChatColor.AQUA + "March")) {
 						e.setResult(Result.DENY);
 						if (itemStack.getAmount() == 0)
 							return;
 						
-						days(3, player);
+						days(2017, 3, player);
 						
 					} else if(itemStack.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "April")) {
 						e.setResult(Result.DENY);
 						if (itemStack.getAmount() == 0)
 							return;
 						
-						days(4, player);
+						days(2017, 4, player);
 						
 					} else if(itemStack.getItemMeta().getDisplayName().equals(ChatColor.GREEN + "May")) {
 						e.setResult(Result.DENY);
 						if (itemStack.getAmount() == 0)
 							return;
 						
-						days(5, player);
+						days(2017, 5, player);
 						
 					} else if(itemStack.getItemMeta().getDisplayName().equals(ChatColor.DARK_GREEN + "June")) {
 						e.setResult(Result.DENY);
 						if (itemStack.getAmount() == 0)
 							return;
 						
-						days(6, player);
+						days(2017, 6, player);
 						
 					} else if(itemStack.getItemMeta().getDisplayName().equals(ChatColor.RED + "July")) {
 						e.setResult(Result.DENY);
 						if (itemStack.getAmount() == 0)
 							return;
 						
-						days(7, player);
+						days(2017, 7, player);
 						
 					} else if(itemStack.getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "August")) {
 						e.setResult(Result.DENY);
 						if (itemStack.getAmount() == 0)
 							return;
 						
-						days(8, player);
+						days(2017, 8, player);
 						
 					} else if(itemStack.getItemMeta().getDisplayName().equals(ChatColor.YELLOW + "September")) {
 						e.setResult(Result.DENY);
 						if (itemStack.getAmount() == 0)
 							return;
 						
-						days(9, player);
+						days(2017, 9, player);
 						
 					} else if(itemStack.getItemMeta().getDisplayName().equals(ChatColor.GOLD + "October")) {
 						e.setResult(Result.DENY);
 						if (itemStack.getAmount() == 0)
 							return;
 						
-						days(10, player);
+						days(2017, 10, player);
 						
 					} else if(itemStack.getItemMeta().getDisplayName().equals(ChatColor.BLUE + "November")) {
 						e.setResult(Result.DENY);
 						if (itemStack.getAmount() == 0)
 							return;
 						
-						days(11, player);
+						days(2017, 11, player);
 						
 					} else if(itemStack.getItemMeta().getDisplayName().equals(ChatColor.DARK_BLUE + "December")) {
 						e.setResult(Result.DENY);
 						if (itemStack.getAmount() == 0)
 							return;
 						
-						days(12, player);
+						days(2017, 12, player);
 					}
 				}
 			}
@@ -270,33 +271,52 @@ public class MainInventoryListener implements Listener {
 		player.openInventory(inv);
 	}
 	
-	private void days(int month, Player player) {
+	private void days(int year, int month, Player player) {
 		UUID uuid = OTCCommand.uuidMap.get(player.getUniqueId());
+		int days = 0;
 		switch(month) {
 			 case 1:
-				 
+				 days = 31;
 			 case 2:
+				 if(isLeapYear(2017))
+					 days = 29;
+				 else
+					 days = 28;
 				 
 			 case 3:
+				 days = 31;
 				 
 			 case 4:
+				 days = 30;
 				 
 			 case 5:
+				 days = 31;
 				 
 			 case 6:
+				 days = 30;
 				 
 			 case 7:
+				 days = 31;
 				 
 			 case 8:
+				 days = 31;
 				 
 			 case 9:
+				 days = 30;
 				 
 			 case 10:
+				 days = 31;
 				 
 			 case 11:
+				 days = 30;
 				 
 			 case 12:
-				 
+				 days = 31;
 		}
+	}
+	
+	private boolean isLeapYear(int year) {
+		assert year >= 1583;
+		return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
 	}
 }
