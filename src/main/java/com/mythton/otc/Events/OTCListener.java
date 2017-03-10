@@ -114,7 +114,7 @@ public class OTCListener implements Listener
 							for(Player p : Bukkit.getOnlinePlayers()) {
 								if(p.isOp()) {
 									p.sendMessage(Log.ColorMessage("&eOnTheClock v&6" + updater.getLatestVersion() + " &eis available!"));
-									p.sendMessage(Log.ColorMessage("&eDownload: &6null"));
+									p.sendMessage(Log.ColorMessage("&eDownload: &6https://www.spigotmc.org/resources/ontheclock.37468/"));
 								}
 							}
 						}
